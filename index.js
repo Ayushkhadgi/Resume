@@ -20,13 +20,13 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 
-app.get('/',(req,res) => {
+app.get('/',(_req,res) => {
     res.send('This is From Express App code')
 })
 
 app.post('/resume',(req,res) => {
     console.log(req.body);
-    db.collection('resumeapi').insert(req.body,(err,result) => {
+    db.collection('resumeapi').insert(req.body,(err,_result) => {
         if(err) throw err;
         res.send('')
     })
