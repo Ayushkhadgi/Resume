@@ -10,7 +10,7 @@ let port = process.env.PORT || 9800;
 let cors = require('cors');
 let mongo = require('mongodb');
 let MongoClient = mongo.MongoClient;
-let mongoUrl = process.env.MongoLocal;
+let mongoUrl = "mongodb+srv://ayush:ayush123@cluster0.fvalbpb.mongodb.net/Resume?retryWrites=true&w=majority";
 let bodyParser = require('body-parser');
 let db;
 
@@ -26,15 +26,15 @@ app.get('/',(req,res) => {
 
 app.post('/resume',(req,res) => {
     console.log(req.body);
-    db.collection('orders').insert(req.body,(err,result) => {
+    db.collection('resumeapi').insert(req.body,(err,result) => {
         if(err) throw err;
-        res.send('Order Placed')
+        res.send('')
     })
 })
 
 MongoClient.connect(mongoUrl,(err,client)=>{
     if(err) console.log(`Error while connecting`);
-    db = client.db('ayushak')
+    db = client.db('Resume')
     app.listen(port,() => {
         console.log(`Listing to port ${port}`)
     })
